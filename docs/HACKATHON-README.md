@@ -3,29 +3,37 @@
 We've learned a lot this week but remember the reason we're doing all this automation and DevOps stuff ... to be able to ship new features to customers quickly and safely. Companies that can't move fast die over time, we don't want to be one of those companies.
 
 So that leads us to CI/CD - it's time automate our workflow ...
-Objectives:
 
-    When you put in a "Pull Request" (PR) from a feature branch into the main branch there should be a Github Action that automatically runs things like linting, formatting, testing and auditing.
-    You should not be able to merge a PR into main unless the steps in the Github Action (lint, format etc etc) all pass.
-    You should not be able to push/merge commits directly to the main branch, everything should have to go through the PR process.
-    When you merge the feature branch into the main branch this should trigger an automated workflow in Render. Render should watch for changes in your main branch, when it sees a change it will pull the code, run the Docker production build and then deploy the Next.js site. You should be able to see your Next.js app live on the internet.
+## Objectives:
 
-Advice:
+When you put in a "Pull Request" (PR) from a feature branch into the main branch there should be a Github Action that automatically runs things like linting, formatting, testing and auditing.
+You should not be able to merge a PR into main unless the steps in the Github Action (lint, format etc etc) all pass.
+You should not be able to push/merge commits directly to the main branch, everything should have to go through the PR process.
+When you merge the feature branch into the main branch this should trigger an automated workflow in Render. Render should watch for changes in your main branch, when it sees a change it will pull the code, run the Docker production build and then deploy the Next.js site. You should be able to see your Next.js app live on the internet.
+
+## Advice:
+
 As always ... take it slow and make a plan 🙂 You need to be really careful with this challenge - its easy to get stuck. Work slowly in small blocks and test your work after each thing on your plan.
 
 Some context: you don't have to use Docker at all with CI/CD - but because we've learned to containerise our applications this week we would like you to use Docker in your Github Action for the PR check (lint, format etc etc), we would also like you to use Render to build and deploy your production docker image.
 
-How do I create and test a Github Action?
+### How do I create and test a Github Action?
 
-    Start off by learning how to write a super simple Github Action. ✅
-    The action should be triggered when someone puts a pull request into the main branch. ✅
-    The action could just log something out to the build console. Maybe ask Chatgpt for an idea of a very simple action that would let you test if that action is working. ✅
-    Once you've written an action (work locally in your main branch as usual) add/commit the folders/file changes and push the change to the main branch. ✅
-    Keep in mind the action should only be triggered if someone creates a PR into the main branch.
-    Test if the action works ... locally create a branch off the main branch, make a code change, commit the code, push up the feature branch and then finally create a pull request into the main branch.
-    You will be successful if your Github Action has been triggered. You should see this after a few seconds on the pull request page.
+Start off by learning how to write a super simple Github Action. ✅  
+The action should be triggered when someone puts a pull request into the main branch. ✅  
+The action could just log something out to the build console. Maybe ask Chatgpt for an idea of a very simple action that would let you test if that action is working. ✅  
+Once you've written an action (work locally in your main branch as usual) add/commit the folders/file changes and push the change to the main branch. ✅  
+Keep in mind the action should only be triggered if someone creates a PR into the main branch. ✅
 
-OK ... my simple action works, what next?
+Test if the action works...  
+ locally create a branch off the main branch, ✅  
+ make a code change, commit the code, ✅  
+ push up the feature branch, ✅  
+ and then finally create a pull request into the main branch.
+
+You will be successful if your Github Action has been triggered. You should see this after a few seconds on the pull request page.
+
+### OK ... my simple action works, what next?
 
 Now we are able to do something (run an action) when a PR into the main branch is created, great work!
 
@@ -33,9 +41,9 @@ Next up we need the action to do something we want - you will need to learn how 
 
 Think hard about what we want to do:
 
-    Docker build the development image (it contains all the dev dependencies 🙂)
-    Docker run the development image (but with npm run lint, format as the commands not npm run dev)
-    Pass/fail depending on if the lint, format etc commands pass/fail.
+- Docker build the development image (it contains all the dev dependencies 🙂)
+- Docker run the development image (but with npm run lint, format as the commands not npm run dev)
+- Pass/fail depending on if the lint, format etc commands pass/fail.
 
 So with docker run we've been doing stuff like `docker run -p 3000:3000 image_name_here`. This is great - because we want to use port forwarding to view the running website and also we want to use the default command at the bottom of the Dockerfile (CMD).
 
@@ -47,13 +55,13 @@ The command above will start the container, run the two commands in the containe
 
 So get going 🏃🏼‍♂️ ... edit that workflow until it builds your development image and runs the image (with lint, format etc). To test as you go work in the main branch locally, then add/commit/push changes to the workflow yaml file. Then make a small change to the feature branch and add/commit/push to the feature branch - this should trigger a new PR build.
 
-So now my action works ... it uses Docker to lint, format my code, what next?
+### So now my action works ... it uses Docker to lint, format my code, what next?
 
 Now you should get a red or green tick (or something like that) if the build passes or fails ... but you'll notice the "merge" button at the bottom of the pull request is NOT disabled by default. So even if the action (lint, format etc) fails we are able to merge the pull request. That is not much of a guard rail is it? We need to make it so people cannot merge their pull requests until the action passes ✅
 
 Time to research Github "Rulesets". You can configure a ruleset that says: you are not able to merge a pull request until all build (action) checks pass. You can also add a rule to stop people committing code directly to the main branch.
 
-Pull Requests are enforced! What next?
+### Pull Requests are enforced! What next?
 
 Well at this point we actually have a basic CI pipeline completed! Time to celebrate! 🎉
 
@@ -100,12 +108,14 @@ CMD ["npm", "start"]
 Once you've configured/saved the new Web Service in Render it will automatically pull the main branch and try to build/deploy it 🎉. If the build fails google the errors it gives you. If that succeeds you should be able to see a link to the deployed site. Try to view the site!
 
 If that works you now have a full CI/CD pipeline!!!!! You can integrate and deploy new features in a fully automated way!
-Stretch Objectives
+
+## Stretch Objectives
 
     Improve you CI (PR action) to check more things. There are a lot of things you could check at the PR stage. Do some research into what others do 🙂 (security checks, code complexity checking etc)
     Stop using Render for the CD part. Instead create another Action to handle the build and deployment of the main branch. You could build the production Docker image and push it to something like AWS's Elastic Container Service. This will be quite hard to pull off!
 
-Presentations
+## Presentations
+
 You will have the usual 6 mins to demo at 13:20 on Friday!
 
     Intro the team.
