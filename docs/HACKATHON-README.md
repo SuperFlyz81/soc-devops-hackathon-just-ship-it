@@ -35,25 +35,29 @@ You will be successful if your GitHub Action has been triggered. You should see 
 
 ### OK ... my simple action works, what next?
 
-Now we are able to do something (run an action) when a PR into the main branch is created, great work!
+Now we are able to do something (run an action) when a PR into the main branch is created, great work! ✅
 
-Next up we need the action to do something we want - you will need to learn how to docker build and docker run in a Github Action. Also ... rather than using the default command "CMD" when the container runs we need to learn how to use docker run and pass it different commands to run inside the container like `npm run lint` or `npm run format`.
+Next up we need the action to do something we want - you will need to learn how to docker build and docker run in a Github Action. ✅  
+Also ... rather than using the default command "CMD" when the container runs we need to learn how to use docker run and pass it different commands to run inside the container like `npm run lint` or `npm run format`. ✅
 
 Think hard about what we want to do:
 
-- Docker build the development image (it contains all the dev dependencies 🙂)
-- Docker run the development image (but with npm run lint, format as the commands not npm run dev)
-- Pass/fail depending on if the lint, format etc commands pass/fail.
+- Docker build the development image (it contains all the dev dependencies 🙂) ✅
+- Docker run the development image (but with npm run lint, format as the commands not npm run dev) ✅
+- Pass/fail depending on if the lint, format etc commands pass/fail. ✅
 
-So with docker run we've been doing stuff like `docker run -p 3000:3000 image_name_here`. This is great - because we want to use port forwarding to view the running website and also we want to use the default command at the bottom of the Dockerfile (CMD).
+So with docker run we've been doing stuff like `docker run -p 3000:3000 image_name_here`. This is great - because we want to use port forwarding to view the running website and also we want to use the default command at the bottom of the Dockerfile (CMD). ✅
 
-But in our pipeline we don't need to run the website or view it so we don't need port forwarding or npm run dev ... we want to run a container but we want to use it for a different purpose: to run lint, format etc etc commands.
+But in our pipeline we don't need to run the website or view it so we don't need port forwarding or npm run dev... ✅  
+we want to run a container but we want to use it for a different purpose: to run lint, format etc etc commands. ✅
 
-Maybe something like `docker run --rm image_name_here npm run lint && npm run format` would work 👀 There is nothing stopping you running this command on your machines to try it!
+Maybe something like `docker run --rm image_name_here npm run lint && npm run format` would work 👀 There is nothing stopping you running this command on your machines to try it! ✅
 
-The command above will start the container, run the two commands in the container then when the commands either pass or fail the container will automatically stop (the --rm flag automatically stops it).
+The command above will start the container, run the two commands in the container then when the commands either pass or fail the container will automatically stop (the --rm flag automatically stops it). ✅
 
-So get going 🏃🏼‍♂️ ... edit that workflow until it builds your development image and runs the image (with lint, format etc). To test as you go work in the main branch locally, then add/commit/push changes to the workflow yaml file. Then make a small change to the feature branch and add/commit/push to the feature branch - this should trigger a new PR build.
+So get going 🏃🏼‍♂️ ... edit that workflow until it builds your development image and runs the image (with lint, format etc). ✅  
+To test as you go work in the main branch locally, then add/commit/push changes to the workflow yaml file.  
+Then make a small change to the feature branch and add/commit/push to the feature branch - this should trigger a new PR build.
 
 ### So now my action works ... it uses Docker to lint, format my code, what next?
 

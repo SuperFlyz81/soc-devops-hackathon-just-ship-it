@@ -1,4 +1,4 @@
-name: Simple Pull Request Logger
+name: Lint and Format (using Prettier) on GitHub Pull Request from any feature branch to Main
 
 on:
   pull_request:
@@ -13,5 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Log a Message
-        run: echo "Hello, a pull request has been made to the main branch!"
+      - name: Build a Docker image
+        run: docker build -t devops-hackathon .
+
+      - name: Start a Docker container (based on the previously created image), then run linting and formatting on that container, and finally, stop the container
+        run: docker run --rm devops-hackathon npm run lint && npm run format
