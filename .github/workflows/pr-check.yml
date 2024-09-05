@@ -16,5 +16,5 @@ jobs:
       - name: Build a Docker image
         run: docker build -t devops-hackathon .
 
-      - name: Start a Docker container (based on the previously created image), then run linting and formatting on that container, and finally, stop the container
+      - name: Start a Docker container, then run linting and formatting via that container, and finally, stop the container
         run: docker run --rm devops-hackathon npm run lint
