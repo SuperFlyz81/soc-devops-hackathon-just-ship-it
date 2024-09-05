@@ -29,9 +29,9 @@ Test if the action works...
  locally create a branch off the main branch, ✅  
  make a code change, commit the code, ✅  
  push up the feature branch, ✅  
- and then finally create a pull request into the main branch.
+ and then finally create a pull request into the main branch. ✅
 
-You will be successful if your Github Action has been triggered. You should see this after a few seconds on the pull request page.
+You will be successful if your GitHub Action has been triggered. You should see this after a few seconds on the pull request page. ✅
 
 ### OK ... my simple action works, what next?
 
