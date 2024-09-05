@@ -1,13 +1,17 @@
 name: Simple Pull Request Logger
+
 on:
   pull_request:
     branches:
       - main
+
 jobs:
-  log_message:
+  log-message:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Log a Message
         run: echo "Hello, a pull request has been made to the main branch!"

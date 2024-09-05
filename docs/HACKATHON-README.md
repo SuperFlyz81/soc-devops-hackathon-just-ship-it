@@ -17,9 +17,11 @@ Some context: you don't have to use Docker at all with CI/CD - but because we've
 
 How do I create and test a Github Action?
 
-    Start off by learning how to write a super simple Github Action. The action should be triggered when someone puts a pull request into the main branch.
-    The action could just log something out to the build console. Maybe ask Chatgpt for an idea of a very simple action that would let you test if that action is working.
-    Once you've written an action (work locally in your main branch as usual) add/commit the folders/file changes and push the change to the main branch. Keep in mind the action should only be triggered if someone creates a PR into the main branch.
+    Start off by learning how to write a super simple Github Action. ✅
+    The action should be triggered when someone puts a pull request into the main branch. ✅
+    The action could just log something out to the build console. Maybe ask Chatgpt for an idea of a very simple action that would let you test if that action is working. ✅
+    Once you've written an action (work locally in your main branch as usual) add/commit the folders/file changes and push the change to the main branch. ✅
+    Keep in mind the action should only be triggered if someone creates a PR into the main branch.
     Test if the action works ... locally create a branch off the main branch, make a code change, commit the code, push up the feature branch and then finally create a pull request into the main branch.
     You will be successful if your Github Action has been triggered. You should see this after a few seconds on the pull request page.
 
