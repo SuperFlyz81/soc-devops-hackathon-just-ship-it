@@ -7,3 +7,5 @@ When you put in a "Pull Request" (PR) from a feature branch into the main branch
 3. create a folder .github and in folder add another folder called workflows ✅
 4. In workflow add a .yml file ✅
 5. commit the changes and push into the main branch ✅
+
+To be continued...

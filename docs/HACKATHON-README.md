@@ -61,71 +61,59 @@ Then make a small change to the feature branch and add/commit/push to the featur
 
 ### STILL TODO - So now my action works ... it uses Docker to lint, format my code, what next?
 
-Now you should get a red or green tick (or something like that) if the build passes or fails ... but you'll notice the "merge" button at the bottom of the pull request is NOT disabled by default. So even if the action (lint, format etc) fails we are able to merge the pull request. That is not much of a guard rail is it? We need to make it so people cannot merge their pull requests until the action passes ✅
+Now you should get a red or green tick (or something like that) if the build passes or fails ... but you'll notice the "merge" button at the bottom of the pull request is NOT disabled by default. So even if the action (lint, format etc) fails we are able to merge the pull request. That is not much of a guard rail is it? We need to make it so people cannot merge their pull requests until the action passes.
 
 Time to research Github "Rulesets". You can configure a ruleset that says: you are not able to merge a pull request until all build (action) checks pass. You can also add a rule to stop people committing code directly to the main branch.
 
 ### Pull Requests are enforced! What next?
 
-Well at this point we actually have a basic CI pipeline completed! Time to celebrate! 🎉
+Well at this point we actually have a basic CI pipeline completed! Time to celebrate! 🎉 ✅
 
-What happens though if we merge the PR into the main branch? Ideally that would trigger an automatic deployment of the main branch so we can see the website on the internet (production!!! 🔥)
+What happens though if we merge the PR into the main branch? Ideally that would trigger an automatic deployment of the main branch so we can see the website on the internet (production!!! 🔥) ✅
 
-To make this easy use Render. Rather than make another Github Action to build and deploy the site let's keep it simple for now by using Render.
+To make this easy use Render. Rather than make another Github Action to build and deploy the site let's keep it simple for now by using Render. ✅
 
-Login or sign up for Render (https://render.com/). Once logged in go to the "Dashboard" and at the top right of the page click "New" then select "Web Service".
+Login or sign up for Render (https://render.com/). Once logged in go to the "Dashboard" and at the top right of the page click "New" then select "Web Service". ✅
 
-You should be able to connect your Render account to your Github repo. You want the web service to "watch" for changes on your repos main branch. When changes happen you want Render to pull your latest main branch, then do a docker build (production, not development), then deploy the image (it does this automatically).
+You should be able to connect your Render account to your Github repo. You want the web service to "watch" for changes on your repos main branch. When changes happen you want Render to pull your latest main branch, then do a docker build (production, not development), then deploy the image (it does this automatically). ✅
 
-If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name:
+If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name: ✅
 
+```
 FROM node:18
-
-​
 
 WORKDIR /app
 
-​
-
 COPY package\*.json ./
-
-​
 
 RUN npm install --omit=dev --ignore-scripts
 
-​
-
 COPY . .
-
-​
 
 RUN npm run build
 
-​
-
 EXPOSE 3000
 
-​
-
 CMD ["npm", "start"]
+```
 
-Once you've configured/saved the new Web Service in Render it will automatically pull the main branch and try to build/deploy it 🎉. If the build fails google the errors it gives you. If that succeeds you should be able to see a link to the deployed site. Try to view the site!
+Once you've configured/saved the new Web Service in Render it will automatically pull the main branch and try to build/deploy it 🎉. If the build fails google the errors it gives you. If that succeeds you should be able to see a link to the deployed site. Try to view the site! ✅
 
-If that works you now have a full CI/CD pipeline!!!!! You can integrate and deploy new features in a fully automated way!
+If that works you now have a full CI/CD pipeline!!!!! You can integrate and deploy new features in a fully automated way! ✅
 
-## Stretch Objectives
+## Stretch Objectives (didn't get to these)
 
-    Improve you CI (PR action) to check more things. There are a lot of things you could check at the PR stage. Do some research into what others do 🙂 (security checks, code complexity checking etc)
-    Stop using Render for the CD part. Instead create another Action to handle the build and deployment of the main branch. You could build the production Docker image and push it to something like AWS's Elastic Container Service. This will be quite hard to pull off!
+Improve you CI (PR action) to check more things. There are a lot of things you could check at the PR stage. Do some research into what others do 🙂 (security checks, code complexity checking etc)
+Stop using Render for the CD part. Instead create another Action to handle the build and deployment of the main branch. You could build the production Docker image and push it to something like AWS's Elastic Container Service. This will be quite hard to pull off!
 
 ## Presentations
 
 You will have the usual 6 mins to demo at 13:20 on Friday!
 
-    Intro the team.
-    Set the context of the challenges that you've faced this week ...your company is facing issues so you've made a proof of concept to be used as a template for all new applications. Build that empathy and make sure you explain the why behind DevOps and automation 😉
-    Show a digram of the entire workflow you have automated. All the way from commit on local machine, to pull request, to merged and deployed. Here are some example diagrams:  https://corporate-assets.lucid.co/chart/636fd12c-8356-4adc-a781-434eccbd3b5a.png?v=1707847405047, and https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/media/azure-devops-ci-cd-architecture.svg?view=azure-devops. These will be more complicated than you need but decent examples.
-    Then demo the whole process and show it working live. You could pre-record it or maybe just show part of it if you're worried about having enough time to demo it all.
-    Then explain how some of it works, show the code.
-    Then talk about next steps.
-    Then reflections.
+1. Intro the team.
+2. Set the context of the challenges that you've faced this week ...your company is facing issues so you've made a proof of concept to be used as a template for all new applications. Build that empathy and make sure you explain the why behind DevOps and automation 😉
+3. Show a digram of the entire workflow you have automated. All the way from commit on local machine, to pull request, to merged and deployed. Here are some example diagrams: https://corporate-assets.lucid.co/chart/636fd12c-8356-4adc-a781-434eccbd3b5a.png?v=1707847405047, and https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/media/azure-devops-ci-cd-architecture.svg?view=azure-devops. These will be more complicated than you need but decent examples.
+4. Then demo the whole process and show it working live. You could pre-record it or maybe just show part of it if you're worried about having enough time to demo it all.
+5. Then explain how some of it works, show the code.
+6. Then talk about next steps.
+7. Then reflections.

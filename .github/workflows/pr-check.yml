@@ -17,4 +17,4 @@ jobs:
         run: docker build -t devops-hackathon -f Dockerfile.dev .
 
       - name: Start a Docker container, then run linting and formatting via that container, and finally, stop the container
-        run: docker run --rm devops-hackathon npm run lint
+        run: docker run --rm devops-hackathon npm run lint && npx prettier --write .
