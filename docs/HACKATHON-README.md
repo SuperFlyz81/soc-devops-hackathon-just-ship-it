@@ -77,7 +77,7 @@ Login or sign up for Render (https://render.com/). Once logged in go to the "Das
 
 You should be able to connect your Render account to your Github repo. You want the web service to "watch" for changes on your repos main branch. When changes happen you want Render to pull your latest main branch, then do a docker build (production, not development), then deploy the image (it does this automatically). ✅
 
-If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name: ✅
+If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name: ✅✅
 
 ```
 FROM node:18
