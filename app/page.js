@@ -43,8 +43,8 @@ export default function Home() {
           height={37}
           priority
         /> */}
-        <Imagez
-          className"relative"
+        <Image
+          className="relative"
           src="/must-love-pets-logo.png"
           alt="Must Love Pets Logo"
           width={300}
