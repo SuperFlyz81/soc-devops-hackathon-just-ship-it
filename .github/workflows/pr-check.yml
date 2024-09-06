@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  log-message:
+  lint-and-format:
     runs-on: ubuntu-latest
 
     steps:
