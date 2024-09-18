@@ -59,11 +59,11 @@ So get going 🏃🏼‍♂️ ... edit that workflow until it builds your devel
 To test as you go work in the main branch locally, then add/commit/push changes to the workflow yaml file. ✅  
 Then make a small change to the feature branch and add/commit/push to the feature branch - this should trigger a new PR build. ✅
 
-### STILL TODO - So now my action works ... it uses Docker to lint, format my code, what next?
+### So now my action works ... it uses Docker to lint, format my code, what next?
 
-Now you should get a red or green tick (or something like that) if the build passes or fails ... but you'll notice the "merge" button at the bottom of the pull request is NOT disabled by default. So even if the action (lint, format etc) fails we are able to merge the pull request. That is not much of a guard rail is it? We need to make it so people cannot merge their pull requests until the action passes.
+Now you should get a red or green tick (or something like that) if the build passes or fails ... but you'll notice the "merge" button at the bottom of the pull request is NOT disabled by default. So even if the action (lint, format etc) fails we are able to merge the pull request. That is not much of a guard rail is it? We need to make it so people cannot merge their pull requests until the action passes. ✅
 
-Time to research Github "Rulesets". You can configure a ruleset that says: you are not able to merge a pull request until all build (action) checks pass. You can also add a rule to stop people committing code directly to the main branch.
+Time to research Github "Rulesets". You can configure a ruleset that says: you are not able to merge a pull request until all build (action) checks pass. You can also add a rule to stop people committing code directly to the main branch. ✅
 
 ### Pull Requests are enforced! What next?
 
@@ -77,7 +77,7 @@ Login or sign up for Render (https://render.com/). Once logged in go to the "Das
 
 You should be able to connect your Render account to your Github repo. You want the web service to "watch" for changes on your repos main branch. When changes happen you want Render to pull your latest main branch, then do a docker build (production, not development), then deploy the image (it does this automatically). ✅
 
-If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name: ✅✅
+If you didn't finish the Docker challenge at the start of the week you might not have a production docker file. Here's our simple "Dockerfile.prod" for building the Next.js app for production use. Just remember if your Dockerfile has a slightly different name you might need to tell Render to look for a file with a different name: ✅
 
 ```
 FROM node:18
