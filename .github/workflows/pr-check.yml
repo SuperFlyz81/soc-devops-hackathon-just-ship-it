@@ -16,7 +16,7 @@ jobs:
       - name: Build a Docker image
         run: docker build -t devops-hackathon -f Dockerfile.dev .
 
-      - name: Start a Docker container, then run linting and formatting checks via that container, and finally, stop the container
+      - name: Start a Docker container based on the Docker image, then run linting and formatting checks via that container, and finally, stop the container
         # run: docker run --rm devops-hackathon npm run lint && npm run format
         # Now using "npx prettier --check ." as a workaround in the "docker run" command below, rather than "npm run format" (as per the commented out original "docker run" command above).
         # This is to avoid the "sh: 1: prettier: not found - Error: Process completed with exit code 127" error during GitHub Action checks in our GitHub pull requests.
